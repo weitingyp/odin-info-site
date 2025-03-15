@@ -2,12 +2,6 @@ import express from "express";
 
 const app = express();
 
-// import author router, declare it before all other base routes
-import authorRouter from "./routes/authorRouter.js";
-app.use("/authors", authorRouter);
-
-app.get("/", (req, res) => res.send("hello world!"));
-
 /* 
 ROUTES
 - routes can use verbs GET, POST, PUT, DELETE or even all (app.all)
@@ -24,6 +18,12 @@ ROUTES
 --- for /user1/messages?message_id=543&action=read
 --- app.get('/:username/messages', (req, res) => console.log(req.query.message_id)) // prints 543 
 */
+
+// import author router, declare it before all other base routes
+import authorRouter from "./routes/authorRouter.js";
+app.use("/authors", authorRouter);
+
+app.get("/", (req, res) => res.send("hello world!"));
 
 const PORT = process.env.PORT | 8000;
 app.listen(PORT, () => {
